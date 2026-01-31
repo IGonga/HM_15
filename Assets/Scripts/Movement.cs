@@ -5,11 +5,15 @@ public class Movement : MonoBehaviour
     private const string HorizontalAxis = "Horizontal";
     private const string VerticalAxis = "Vertical";
 
-    [SerializeField] private float _speed;
-    [SerializeField] private float _speedRotation;
-
     private Vector3 _direction;
     private Vector3 _normalizedDirection;
+
+    private PlayerData _playerData;
+
+    private void Awake()
+    {
+        _playerData = GetComponent<PlayerData>();
+    }
 
     private void Update()
     {
@@ -25,7 +29,7 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        Vector3 step = _normalizedDirection * _speed * Time.fixedDeltaTime;
+        Vector3 step = _normalizedDirection * _playerData.SpeedMove * Time.fixedDeltaTime;
         transform.Translate(step, Space.World);
     }
 
@@ -34,7 +38,7 @@ public class Movement : MonoBehaviour
         if (_direction.magnitude > 0.01f)
         {
             Quaternion lookRotation = Quaternion.LookRotation(_direction);
-            float step = _speedRotation * Time.deltaTime;
+            float step = _playerData.SpeedRotation * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, step);
         }
     }

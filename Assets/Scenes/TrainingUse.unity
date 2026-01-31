@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 172401667}
   - component: {fileID: 172401666}
   m_Layer: 0
-  m_Name: Item Max HP
+  m_Name: Item Healing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 265035061}
   - component: {fileID: 265035060}
   - component: {fileID: 265035059}
+  - component: {fileID: 265035063}
   - component: {fileID: 265035062}
   m_Layer: 0
   m_Name: Player
@@ -575,7 +576,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816c1429c618c2d478b1658588ca766e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 7
+  _speedMove: 0
+  _speedRotation: 750
+--- !u!114 &265035063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265035058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afaaf7b527a0d6f418226cc06695be49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedMove: 7
   _speedRotation: 750
 --- !u!1 &606712080
 GameObject:
