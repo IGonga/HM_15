@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerData _playerData;
+
+    private void Awake()
     {
-        
+        _playerData = GetComponent<PlayerData>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        Item item = other.GetComponent<Item>();
+
+        if (item != null)
+        {
+            _playerData.TrySetItem(item);
+            Destroy(item);
+        }
     }
 }

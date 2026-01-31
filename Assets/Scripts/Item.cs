@@ -4,10 +4,10 @@ public abstract class Item : MonoBehaviour
 {
     [SerializeField] private string _name;
 
-    protected abstract void Use();
+    public abstract void Use(GameObject target);
 
-    protected virtual void DisplayInfo()
+    public virtual void DisplayInfo()
     {
-        Debug.Log($"Название предмета: {_name}");
+        Debug.Log($"Применяется предмет: {_name}");
     }
 }

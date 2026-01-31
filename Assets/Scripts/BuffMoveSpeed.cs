@@ -5,7 +5,7 @@ public class BuffMoveSpeed : Item
     [SerializeField] private float _value;
     [SerializeField] private float _timeOfAction;
 
-    protected override void Use()
+    public override void Use(GameObject target)
     {
         throw new System.NotImplementedException();
     }

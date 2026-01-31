@@ -9,4 +9,16 @@ public class PlayerData : MonoBehaviour
     public float Health => _health;
     public float SpeedMove => _speedMove;
     public float SpeedRotation => _speedRotation;
+
+    public Item CurrentItem { get; private set; }  
+
+    public bool TrySetItem(Item newItem)
+    {
+        if (CurrentItem == null) return false;
+
+        CurrentItem = newItem;
+        return true;
+    }
+
+    public void ClearItem() => CurrentItem = null;
 }
