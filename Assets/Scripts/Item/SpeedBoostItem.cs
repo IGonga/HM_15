@@ -13,6 +13,8 @@ public class SpeedBoostItem : Item
             _playerController.ApplySpeedBoost(_valueModifire);
 
             DisplayInfo();
+
+            Dispose();
         }
     }
 
