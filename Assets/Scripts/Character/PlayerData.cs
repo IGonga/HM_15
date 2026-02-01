@@ -10,14 +10,17 @@ public class PlayerData : MonoBehaviour
     public float SpeedMove => _speedMove;
     public float SpeedRotation => _speedRotation;
 
-    public Item CurrentItem { get; private set; }  
+    public Item CurrentItem { get; private set; }
 
     public bool TrySetItem(Item newItem)
     {
-        if (CurrentItem == null) return false;
+        if (CurrentItem == null)
+        {
+            CurrentItem = newItem;
+            return true;
+        }
 
-        CurrentItem = newItem;
-        return true;
+        return false;
     }
 
     public void ClearItem() => CurrentItem = null;

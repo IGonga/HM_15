@@ -19,7 +19,9 @@ public class PlayerController : PlayerMovement
         {
             if (_playerData.CurrentItem != null)
             {
-                _playerData.CurrentItem.Use(gameObject);
+                Item tempItem = Instantiate(_playerData.CurrentItem);
+
+                tempItem.Use(gameObject);
 
                 _playerData.ClearItem();
             }

@@ -15,8 +15,9 @@ public class Collector : MonoBehaviour
 
         if (item != null)
         {
-            _playerData.TrySetItem(item);
-            Destroy(item);
+            _playerData.TrySetItem(item.ItemPrefab);
+
+            Destroy(other.gameObject);
         }
     }
 }
