@@ -5,6 +5,7 @@ public abstract class Item : MonoBehaviour
     [SerializeField] private string _name;
 
     public abstract void Use(GameObject target);
+    public abstract void Dispose();
 
     public virtual void DisplayInfo()
     {

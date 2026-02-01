@@ -34,13 +34,16 @@ public class SpeedBoostItem : Item
         if (_isActive)
         {
             if (_durationOfAction < 0)
+            {
+                _playerController.TryGetComponent<PlayerController>(out _playerController); 
                 Dispose();
+            }
 
             _durationOfAction -= Time.deltaTime;
         }
     }
 
-    private void Dispose()
+    public override void Dispose()
     {
         _playerController.ResetSpeed();
 

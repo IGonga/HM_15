@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 172401668}
   - component: {fileID: 172401667}
   - component: {fileID: 172401666}
+  - component: {fileID: 172401670}
   m_Layer: 0
   m_Name: Item Healing
   m_TagString: Untagged
@@ -476,6 +477,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!114 &172401670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172401665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e7c582270d1b54794b9748812c2da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _value: 0
 --- !u!1 &265035058
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afaaf7b527a0d6f418226cc06695be49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
+  _maxHealth: 10
   _speedMove: 7
   _speedRotation: 750
 --- !u!114 &265035065

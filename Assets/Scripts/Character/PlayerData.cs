@@ -2,11 +2,25 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    [SerializeField] private float _health;
+    [SerializeField] private float _maxHealth;
     [SerializeField] private float _speedMove;
     [SerializeField] private float _speedRotation;
 
-    public float Health => _health;
+    private float _currentHealth;
+
+    public float MaxHealth => _maxHealth;
+    public float CurrentHealth
+    {
+        get => _currentHealth;
+        set
+        {
+            if (value > 0)
+                _currentHealth += value;
+
+            if (_currentHealth > _maxHealth)
+                _currentHealth = _maxHealth;
+        }
+    }
     public float SpeedMove => _speedMove;
     public float SpeedRotation => _speedRotation;
 
