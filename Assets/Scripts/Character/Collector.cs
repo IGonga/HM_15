@@ -15,6 +15,11 @@ public class Collector : MonoBehaviour
         {
             if (_playerData.TrySetItem(item))
             {
+                if (item.MySpawner != null)
+                {
+                    item.MySpawner.Occupy(null);
+                }
+
                 item.transform.SetParent(transform);
             }
         }

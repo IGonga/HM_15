@@ -4,6 +4,8 @@ public abstract class Item : MonoBehaviour
 {
     [SerializeField] private string _name;
 
+    public Spawner MySpawner { get; set; }
+
     public abstract void Use(GameObject target);
     public abstract void Dispose();
 

@@ -11,6 +11,7 @@ public class SpeedBoostItem : Item
         if (target.TryGetComponent<PlayerController>(out _playerController))
         {
             _playerController.ApplySpeedBoost(_valueModifire);
+            _playerController.ToggleSpeedEffect(true);
 
             DisplayInfo();
 

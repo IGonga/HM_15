@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerController : PlayerMovement
 {
+    [SerializeField] private GameObject _trailEffect;
+    [SerializeField] private ParticleSystem _particleEffect;
+
     protected override void Update()
     {
         base.Update();
@@ -11,6 +14,22 @@ public class PlayerController : PlayerMovement
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    public void ToggleSpeedEffect(bool isActive)
+    {
+        if (_trailEffect != null)
+        {
+            _trailEffect.SetActive(isActive);
+        }
+    }
+
+    public void ToggleParticleEffect(bool isActive)
+    {
+        if (_particleEffect != null)
+        {
+            _particleEffect.Play();
+        }
     }
 
     private void UseItem()
@@ -25,4 +44,6 @@ public class PlayerController : PlayerMovement
             }
         }
     }
+
+
 }

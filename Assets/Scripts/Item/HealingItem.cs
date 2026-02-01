@@ -4,13 +4,14 @@ public class HealingItem : Item
 {
     [SerializeField] private float _value;
 
-    private PlayerData _playerData;
-
     public override void Use(GameObject target)
     {
-        if (target.TryGetComponent<PlayerData>(out _playerData))
+        if (target.TryGetComponent<PlayerData>(out PlayerData playerData))
         {
-            _playerData.CurrentHealth = _value;
+            if (target.TryGetComponent<PlayerController>(out PlayerController playerController))
+                playerController.ToggleParticleEffect(true);
+
+            playerData.CurrentHealth = _value;
 
             DisplayInfo();
 
