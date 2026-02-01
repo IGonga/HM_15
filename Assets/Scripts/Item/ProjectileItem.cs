@@ -1,15 +1,26 @@
-    using UnityEngine;
+using UnityEngine;
 
 public class ProjectileItem : Item
 {
-    [SerializeField] private Projectile _projectilePrefab;
+    private Projectile _movementScript;
+
+    private void Awake()
+    {
+        _movementScript = GetComponent<Projectile>();
+    }
 
     public override void Use(GameObject target)
     {
         DisplayInfo();
 
-        _projectilePrefab.enabled = true;
+        transform.parent = null;
 
-        Instantiate(_projectilePrefab, target.transform.position, target.transform.rotation);
+        transform.position = target.transform.position;
+        transform.rotation = target.transform.rotation;
+
+        if (_movementScript != null)
+            _movementScript.enabled = true;
+
+        Destroy(this);
     }
 }
