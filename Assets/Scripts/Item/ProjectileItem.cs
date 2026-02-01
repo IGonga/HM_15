@@ -8,6 +8,8 @@ public class ProjectileItem : Item
     {
         DisplayInfo();
 
+        _projectilePrefab.enabled = true;
+
         Instantiate(_projectilePrefab, target.transform.position, target.transform.rotation);
     }
 }

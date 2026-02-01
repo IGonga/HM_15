@@ -11,13 +11,12 @@ public class Collector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Item item = other.GetComponent<Item>();
-
-        if (item != null)
+        if (other.TryGetComponent(out Item item))
         {
-            _playerData.TrySetItem(item.ItemPrefab);
-
-            Destroy(other.gameObject);
+            if (_playerData.TrySetItem(item))
+            {
+                item.transform.SetParent(transform);
+            }
         }
     }
 }

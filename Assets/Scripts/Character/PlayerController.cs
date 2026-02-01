@@ -17,17 +17,14 @@ public class PlayerController : PlayerMovement
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            Debug.Log("Input.GetKeyDown(KeyCode.F");
             if (_playerData.CurrentItem != null)
             {
-                Item tempItem = Instantiate(_playerData.CurrentItem);
+                Debug.Log("CurrentItem != null");
+                _playerData.CurrentItem.Use(gameObject);
 
-                tempItem.Use(gameObject);
-
+                Destroy(_playerData.CurrentItem.gameObject);
                 _playerData.ClearItem();
-            }
-            else
-            {
-                Debug.Log("Предмет отсутствует!");
             }
         }
     }
