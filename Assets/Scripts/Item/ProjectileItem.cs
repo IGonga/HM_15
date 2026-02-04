@@ -9,15 +9,26 @@ public class ProjectileItem : Item
         _movementScript = GetComponent<Projectile>();
     }
 
-    public override void Use(GameObject target)
+    public override bool TryUse(GameObject target)
     {
-        DisplayInfo();
+        if (target != null && _movementScript != null)
+        {
+            Launch(target);
 
+            Debug.Log($"Использован предмет: {Name}");
+            return true;
+        }
+
+        Debug.Log($"Не удалось использовать предмет: {Name}");
+        return false;
+    }
+
+    private void Launch(GameObject target)
+    {
         transform.position = target.transform.position;
         transform.rotation = target.transform.rotation;
 
-        if (_movementScript != null)
-            _movementScript.enabled = true;
+        _movementScript.enabled = true;
 
         transform.parent = null;
         Destroy(this);

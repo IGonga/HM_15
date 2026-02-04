@@ -4,25 +4,25 @@ public class HealingItem : Item
 {
     [SerializeField] private float _value;
 
-    public override void Use(GameObject target)
+    public override bool TryUse(GameObject target)
     {
         if (target.TryGetComponent<PlayerData>(out PlayerData playerData))
         {
             if (target.TryGetComponent<PlayerController>(out PlayerController playerController))
                 playerController.ToggleParticleEffect(true);
 
-            playerData.CurrentHealth = _value;
+            playerData.AddHealth(_value);
 
-            DisplayInfo();
+            Debug.Log($"Использован предмет: {Name}");
+            Debug.Log($"Получено исцеление на {_value} HP");
+            Debug.Log($"Текущее здоровье: {playerData.CurrentHealth}/{playerData.MaxHealth} HP");
 
             Destroy(gameObject);
+
+            return true;
         }
-    }
 
-    public override void DisplayInfo()
-    {
-        base.DisplayInfo();
-
-        Debug.Log($"Получено исцеление на {_value} ХП");
+        Debug.Log($"Не удалось использовать предмет: {Name}");
+        return false;
     }
 }

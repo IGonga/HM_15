@@ -38,7 +38,7 @@ public class PlayerController : PlayerMovement
         {
             if (_playerData.CurrentItem != null)
             {
-                _playerData.CurrentItem.Use(gameObject);
+                _playerData.CurrentItem.TryUse(gameObject);
 
                 _playerData.ClearItem();
             }

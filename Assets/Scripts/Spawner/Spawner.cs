@@ -1,19 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private float _spawnCooldown;
-    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private SpawnPoint[] _spawnPoint;
+    [SerializeField] private Item[] _itemPrefabs;
 
     private float _currentSpawnCooldown;
-
-    public float CurrentSpawnCooldown => _currentSpawnCooldown;
-
-    private Item _item;
-
-    public bool IsEmpty => _item == null;
-
-    public Vector3 SpawnPosition => _spawnPoint != null ? _spawnPoint.position : transform.position;
 
     private void Awake()
     {
@@ -22,19 +16,58 @@ public class Spawner : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (IsEmpty == true)
+        _currentSpawnCooldown -= Time.deltaTime;
+
+        if (_currentSpawnCooldown <= 0)
         {
-            _currentSpawnCooldown -= Time.deltaTime;
+            List<SpawnPoint> emptyPoints = GetEmptyPoints();
+
+            if (emptyPoints.Count == 0)
+            {
+                ResetCooldown();
+                return;
+            }
+
+            TrySpawnItem(emptyPoints);
         }
     }
 
-    public void Occupy(Item item)
+    private void TrySpawnItem(List<SpawnPoint> emptyPoints)
     {
-        _item = item;
+        foreach (var point in emptyPoints)
+        {
+            if (point.IsEmpty)
+            {
+                Item itemPrefab = _itemPrefabs[Random.Range(0, _itemPrefabs.Length)];
+                Item itemInstance = Instantiate(itemPrefab, point.transform.position, Quaternion.identity);
+
+                point.Occupy(itemInstance);
+
+                ResetCooldown();
+
+                Debug.Log($"Заспавнен предмет: {itemPrefab.Name}");
+                return;
+            }
+        }
     }
 
-    public void ResetCooldown()
+    private void ResetCooldown()
     {
         _currentSpawnCooldown = _spawnCooldown;
+    }
+
+    private List<SpawnPoint> GetEmptyPoints()
+    {
+        List<SpawnPoint > emptyPoint = new List<SpawnPoint>();
+
+        foreach (var point in _spawnPoint)
+        {
+            if (point.IsEmpty)
+            {
+                emptyPoint.Add(point);
+            }
+        }
+
+        return emptyPoint;
     }
 }

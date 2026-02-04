@@ -17,6 +17,10 @@ public class Collector : MonoBehaviour
             {
                 item.transform.SetParent(transform);
             }
+            else
+            {
+                Debug.Log($"Не удалось подобрать предмет. У вас уже есть: {item.Name}");
+            }
         }
     }
 }

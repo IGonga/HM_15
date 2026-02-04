@@ -4,10 +4,7 @@ public abstract class Item : MonoBehaviour
 {
     [SerializeField] private string _name;
 
-    public abstract void Use(GameObject target);
+    public string Name => _name;
 
-    public virtual void DisplayInfo()
-    {
-        Debug.Log($"Применяется предмет: {_name}");
-    }
+    public abstract bool TryUse(GameObject target);
 }

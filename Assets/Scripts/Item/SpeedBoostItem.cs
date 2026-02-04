@@ -6,23 +6,21 @@ public class SpeedBoostItem : Item
 
     private PlayerController _playerController;
 
-    public override void Use(GameObject target)
+    public override bool TryUse(GameObject target)
     {
         if (target.TryGetComponent<PlayerController>(out _playerController))
         {
             _playerController.ApplySpeedBoost(_valueModifire);
             _playerController.ToggleSpeedEffect(true);
 
-            DisplayInfo();
-
+            Debug.Log($"Использова предмет: {Name}");
+            Debug.Log($"Скорость увеличена на: x{_valueModifire}");
             Destroy(gameObject);
+
+            return true;
         }
-    }
 
-    public override void DisplayInfo()
-    {
-        base.DisplayInfo();
-
-        Debug.Log($"Скорость увеличена на: x{_valueModifire}");
+        Debug.Log($"Не удалось использовать предмет: {Name}");
+        return false;
     }
 }
