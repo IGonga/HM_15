@@ -15,13 +15,8 @@ public class HealingItem : Item
 
             DisplayInfo();
 
-            Dispose();
+            Destroy(gameObject);
         }
-    }
-
-    public override void Dispose()
-    {
-        Destroy(gameObject);
     }
 
     public override void DisplayInfo()

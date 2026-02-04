@@ -19,11 +19,6 @@ public class ProjectileItem : Item
         if (_movementScript != null)
             _movementScript.enabled = true;
 
-        Dispose();
-    }
-
-    public override void Dispose()
-    {
         transform.parent = null;
         Destroy(this);
     }

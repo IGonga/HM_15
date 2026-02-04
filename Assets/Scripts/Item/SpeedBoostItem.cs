@@ -15,7 +15,7 @@ public class SpeedBoostItem : Item
 
             DisplayInfo();
 
-            Dispose();
+            Destroy(gameObject);
         }
     }
 
@@ -24,10 +24,5 @@ public class SpeedBoostItem : Item
         base.DisplayInfo();
 
         Debug.Log($"Скорость увеличена на: x{_valueModifire}");
-    }
-
-    public override void Dispose()
-    {
-        Destroy(gameObject);
     }
 }

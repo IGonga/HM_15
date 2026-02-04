@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trailEffect: {fileID: 1836144998}
+  _particleEffect: {fileID: 1025180715}
 --- !u!1001 &380860369
 PrefabInstance:
   m_ObjectHideFlags: 0
